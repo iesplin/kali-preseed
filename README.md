@@ -4,11 +4,11 @@ Preseed configurations for Kali Linux. These are intended to be used for creatin
 
 |File|Description|
 |---|---|
-|preseed/core-minimal.cfg|Kali minimal installation without a desktop environment|
-|preseed/gnome-default.cfg|Kali default installation with Gnome desktop environment|
-|preseed/gnome-minimal.cfg|Kali minimal installation with Gnome desktop environment|
-|preseed/xfce-default.cfg|Kali default installation with XFCE desktop environment|
-|preseed/xfce-minimal.cfg|Kali minimal installation with XFCE desktop environment|
+|`preseed/core-minimal.cfg`|Kali minimal installation without a desktop environment|
+|`preseed/gnome-default.cfg`|Kali default installation with Gnome desktop environment|
+|`preseed/gnome-minimal.cfg`|Kali minimal installation with Gnome desktop environment|
+|`preseed/xfce-default.cfg`|Kali default installation with XFCE desktop environment|
+|`preseed/xfce-minimal.cfg`|Kali minimal installation with XFCE desktop environment|
 
 ## How to use
 
