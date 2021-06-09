@@ -62,6 +62,6 @@ d-i cdrom-detect/eject boolean true
 
 # Post-install commands
 d-i preseed/late_command string \
-    in-target curl -L -o /root/kali-postinst.sh "${GIT_REPO_RAW_URL}/postinst.sh"; \
+    in-target curl -L -o /root/postinst.sh "${GIT_REPO_RAW_URL}/postinst.sh"; \
     in-target chmod +x /root/postinst.sh; \
     in-target /root/postinst.sh;
