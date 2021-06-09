@@ -1,0 +1,5 @@
+core-minimal,curl git kali-linux-core python3
+gnome-default,curl git kali-linux-default kali-desktop-gnome
+gnome-minimal,curl git kali-linux-core kali-desktop-gnome python3
+xfce-default,curl git kali-linux-default kali-desktop-xfce
+xfce-minimal,curl git kali-linux-core kali-desktop-xfce python3

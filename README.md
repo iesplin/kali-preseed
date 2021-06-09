@@ -1,26 +1,26 @@
 # Kali Preseed configurations
 
-Preseed configurations for Kali Linux.
+Preseed configurations for Kali Linux. These are intended to be used for creating virtual machines.
 
 |File|Description|
 |---|---|
-|default-gnome.cfg|Default installation of Gnome desktop environment|
-|default-xfce.cfg|Default installation of XFCE desktop environment|
-|minimal-no-desktop.cfg|Core installation without a desktop environment|
-|minimal-gnome.cfg|Minimal installation of Gnome desktop environment|
-|minimal-xfce.cfg|Minimal installation of XFCE desktop environment|
+|preseed/core-minimal.cfg|Kali minimal installation without a desktop environment|
+|preseed/gnome-default.cfg|Kali default installation with Gnome desktop environment|
+|preseed/gnome-minimal.cfg|Kali minimal installation with Gnome desktop environment|
+|preseed/xfce-default.cfg|Kali default installation with XFCE desktop environment|
+|preseed/xfce-minimal.cfg|Kali minimal installation with XFCE desktop environment|
 
 ## How to use
-
-### Kali Netboot ISO
-
-1. Download Kali Netboot ISO from http://http.kali.org/kali/dists/kali-rolling/main/installer-amd64/current/images/netboot/mini.iso
-2. Boot from the ISO
-3. At the Kali boot menu, press `<esc>` and then enter `auto url=https://raw.githubusercontent.com/iesplin/kali-minimal/master/<preseed_file>`, replacing `<preseed_file>` with one of the above the preseed file names and press enter.
 
 ### Kali Linux Installer/NetInstaller ISO
 
 1. Download Kali ISO from https://www.kali.org/downloads/
-2. Boot from the ISO
+2. Create a new VM that boots from the Kali ISO
 3. At the Kali boot menu, press `<tab>`.
-4. Edit the command line and remove the `preseed/file=/cdrom/simple-cdd/default.preseed`. Add `auto=true url=https://raw.githubusercontent.com/iesplin/kali-minimal/master/<preseed_file>`, replacing `<preseed_file>` with one of the above the preseed file names and press enter.
+4. Edit the command line and replace the below
+
+        preseed/url=/cdrom/simple-cdd/default.preseed simple-cdd/profiles=kali,offline desktop=xfce
+
+    with     
+
+        auto=true url=https://raw.githubusercontent.com/iesplin/kali-preseed/master/preseed/{preseed_file} priority=critical

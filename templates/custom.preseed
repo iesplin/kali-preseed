@@ -1,0 +1,67 @@
+
+################################
+# Custom preseed configuration #
+################################
+
+# Network
+d-i netcfg/get_hostname string kali
+d-i netcfg/get_domain string unassigned-domain
+d-i netcfg/choose_interface select eth0
+d-i netcfg/dhcp_timeout string 60
+
+# Locale
+d-i debian-installer/locale string en_AU.UTF-8
+d-i console-keymaps-at/keymap select us
+d-i keyboard-configuration/xkb-keymap select us
+
+# Timezone
+d-i clock-setup/utc boolean true
+d-i time/zone string Australia/Queensland
+
+# Don't ask for proxy settings
+d-i mirror/http/proxy string
+
+# Partitioning
+d-i partman-auto/method string regular
+d-i partman-lvm/device_remove_lvm boolean true
+d-i partman-md/device_remove_md boolean true
+d-i partman-lvm/confirm boolean true
+d-i partman-auto/expert_recipe string \
+    single-part ::                          \
+        5000 10000 -1 $default_filesystem   \
+            $primary{ }                     \
+            $bootable{ }                    \
+            method{ format }                \
+            format{ }                       \
+            use_filesystem{ }               \
+            $default_filesystem{ }          \
+            mountpoint{ / } .
+d-i partman-auto/disk string /dev/sda
+d-i partman/confirm_write_new_label boolean true
+d-i partman/choose_partition select finish
+d-i partman/confirm boolean true
+d-i partman/confirm_nooverwrite boolean true
+d-i partman-partitioning/confirm_write_new_label boolean true
+d-i partman-basicfilesystems/no_swap boolean false
+
+# Packages
+tasksel tasksel/first multiselect standard
+d-i pkgsel/include string \
+    ${PRESEED_PACKAGES}
+
+# Grub
+d-i grub-installer/only_debian boolean true
+d-i grub-installer/with_other_os boolean false
+d-i grub-installer/bootdev string /dev/sda
+
+# Automatically reboot after installation
+d-i finish-install/reboot_in_progress note
+
+# Eject media after installation
+d-i cdrom-detect/eject boolean true
+
+# Post-install commands
+d-i preseed/late_command string \
+    in-target curl -L -o /root/kali-postinst.sh "${GIT_REPO_RAW_URL}/postinst.sh"; \
+    in-target chmod +x /root/postinst.sh; \
+    in-target /root/postinst.sh;

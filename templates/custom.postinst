@@ -1,0 +1,13 @@
+
+##################################
+# Custom post-installation steps #
+##################################
+
+configure_swapfile() {
+    dd if=/dev/zero of=/swapfile bs=2G count=1
+    chmod 600 /swapfile
+    mkswap /swapfile
+    printf "/swapfile none swap sw 0 0\n" >> /etc/fstab
+}
+
+configure_swapfile
