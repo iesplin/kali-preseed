@@ -8,7 +8,7 @@
 # and in the live-build configuration).
 
 configure_sources_list() {
-    if grep -q '^deb ' /etc/apt/sources.list; then
+    if grep -q '^deb http' /etc/apt/sources.list; then
 	echo "INFO: sources.list is configured, everything is fine"
 	return
     fi
@@ -58,10 +58,11 @@ configure_usergroups() {
     # Create the wireshark group if needed
     addgroup --system wireshark || true
 
+    # adm - read access to log files
     # kaboxer - for kaboxer
     # dialout - for serial access
     # wireshark - capture sessions in wireshark
-    kali_groups="kaboxer,dialout,wireshark"
+    kali_groups="adm,kaboxer,dialout,wireshark"
 
     for user in $(get_user_list); do
 	echo "INFO: adding user '$user' to groups '$kali_groups'"

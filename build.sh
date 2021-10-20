@@ -20,6 +20,7 @@ build_preseed_configs() {
 build_postinst_script() {
     cat ./templates/kali.postinst > ./preseed/postinst.sh
     cat ./templates/custom.postinst >> ./preseed/postinst.sh
+    sed -i "s/grep -q '^deb '/grep -q '^deb http'/g" ./preseed/postinst.sh
     echo "Generated postinst.sh"
 }
 
